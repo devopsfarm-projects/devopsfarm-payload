@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import Certificate from './certificatedata';
-import Quiz from '../../public/quiz/page'; // Import the Quiz component correctly
+import Quiz from './quiz/page'; // Import the Quiz component correctly
 import usersData from './users.json'; // Assuming the JSON file is in the same directory
 
 function Certificatedata() {

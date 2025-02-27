@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import WorldMap from "@/components/ui/world-map";
+// import WorldMap from "@/components/ui/world-map";
  
 export default function Contact() {
   return (
@@ -30,7 +30,7 @@ export default function Contact() {
           Travellers.
         </p>
       </div> */}
-      <WorldMap
+      {/* <WorldMap
         dots={[
           {
             start: {
@@ -63,7 +63,7 @@ export default function Contact() {
             end: { lat: -1.2921, lng: 36.8219 }, // Nairobi
           },
         ]}
-      />
+      /> */}
     </div>
       <div className="container mx-auto flex flex-col md:flex-row my-12">
         <div className="flex flex-col w-full lg:w-2/5 p-8">

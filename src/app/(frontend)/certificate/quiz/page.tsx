@@ -42,7 +42,7 @@ const Quiz: React.FC<any> = ({ onComplete }) => {
     };
 
     const updateScore = () => {
-        if (clickedOption === QuizData[currentQuestion].answer) {
+        if (clickedOption === QuizData[currentQuestion]?.answer) {
             setScore(score + 1);
         }
         setShowAnswer(true);
@@ -59,13 +59,13 @@ const Quiz: React.FC<any> = ({ onComplete }) => {
                     <>
                         <div className="text-xl font-semibold mb-4 text-center">
                             <span>{currentQuestion + 1}. </span>
-                            <span>{QuizData[currentQuestion].question}</span>
+                            <span>{QuizData[currentQuestion]?.question}</span>
                         </div>
                         <div className="text-lg font-medium text-gray-600 dark:text-gray-300 mb-4">
                             Time Left: {timeLeft} seconds
                         </div>
                         <div className="flex flex-col w-full space-y-3">
-                            {QuizData[currentQuestion].options.map((option, i) => (
+                            {QuizData[currentQuestion]?.options.map((option, i) => (
                                 <button
                                     className={`p-2 rounded shadow-md border border-gray-300 
                                     ${
@@ -73,8 +73,8 @@ const Quiz: React.FC<any> = ({ onComplete }) => {
                                             ? 'bg-purple-500 text-white'
                                             : 'bg-white text-gray-800 dark:bg-gray-700 dark:text-gray-300'
                                     } 
-                                    ${showAnswer && QuizData[currentQuestion].answer === i + 1 ? 'bg-green-500 text-white' : ''}
-                                    ${showAnswer && clickedOption !== QuizData[currentQuestion].answer && clickedOption === i + 1 ? 'bg-red-500 text-white' : ''}`}
+                                    ${showAnswer && QuizData[currentQuestion]?.answer === i + 1 ? 'bg-green-500 text-white' : ''}
+                                    ${showAnswer && clickedOption !== QuizData[currentQuestion]?.answer && clickedOption === i + 1 ? 'bg-red-500 text-white' : ''}`}
                                     key={i}
                                     onClick={() => !showAnswer && setClickedOption(i + 1)}
                                 >
