@@ -8,9 +8,9 @@ export { generateMetadata }
 
 // "use client";
 // import React from "react";
-// // import Herosection from "../components/Herosection";
-// // import CustomerLogos from "../components/CustomerLogos";
-// // import { internships, helpSections, expectations } from "../components/homePageData";
+// import Herosection from "./components/Herosection";
+// import CustomerLogos from "./components/CustomerLogos";
+// import { internships, helpSections, expectations } from "./components/homePageData";
 // export default function Home() {
 
 //   const InternshipCard = ({ internship }: { internship: { title: string, description: string, skills: string, tools: string, projects: string } }) => (
@@ -55,7 +55,7 @@ export { generateMetadata }
 
 //   return (
 //     <>
-//     {/* <Herosection/> */}
+//     <Herosection/>
 //     <main className="pt-16 bg-clip-bg bg-transparent bg-logo-gradient">
 //       <section className="container mx-auto px-4 py-12 md:py-24">
 //         <div className="flex flex-col md:flex-row items-center justify-between">
@@ -80,11 +80,11 @@ export { generateMetadata }
 //                 “99% of organizations practicing DevOps report positive impacts, including 61% with higher quality deliverables and 49% with faster time-to-market.”
 //               </h3>
 //               <h2 className="text-2xl font-semibold text-gray-800 mb-4">What You Can Expect</h2>
-//               {/* <ul className="space-y-2 text-black mb-6">
+//               <ul className="space-y-2 text-black mb-6">
 //                 {expectations.map((text, index) => (
 //                   <ExpectationListItem key={index} text={text} />
 //                 ))}
-//               </ul> */}
+//               </ul>
 //               <div className="space-y-4">
 //                 <a
 //                   target="_blank"
@@ -107,7 +107,7 @@ export { generateMetadata }
 //       </section>
 //     </main>
     
-//     {/* <div className="flex flex-col gap-3 pb-8 justify-center items-center px-4 sm:px-8 md:px-16 lg:px-40">
+//     <div className="flex flex-col gap-3 pb-8 justify-center items-center px-4 sm:px-8 md:px-16 lg:px-40">
 //       <h1 className="text-4xl text-green-500 mb-4">HOW DEVOPSFARM CAN HELP</h1>
 //       <p className="text-xl md:text-xl text-center text-gray-400 mb-6">
 //         We Help Streamline your Development so you can meet the Demands of your Users
@@ -115,7 +115,7 @@ export { generateMetadata }
 //       {helpSections.map((section, index) => (
 //         <HelpSectionCard key={index} title={section.title} description={section.description} />
 //       ))}
-//     </div> */}
+//     </div>
 
 
 //     <div className="bg-clip-bg  bg-transparent bg-logo-gradient text-white body-font">
@@ -191,11 +191,11 @@ export { generateMetadata }
 //           Each of these internship programs provides a unique opportunity to gain hands-on experience, work on impactful projects, and develop skills that are highly sought after in the tech industry.
 //         </p>
 //       </div>
-//       {/* <div className="mx-auto grid justify-center  gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
+//       <div className="mx-auto grid justify-center  gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
 //         {internships.map((internship, index) => (
 //           <InternshipCard key={index} internship={internship} />
 //         ))}
-//       </div> */}
+//       </div>
 //     </section>
 
 // <div
@@ -214,7 +214,7 @@ export { generateMetadata }
 //     borderColor: "rgba(92, 79, 240, 0.2)",
 //   }}
 // ></div>
-// {/* <CustomerLogos/> */}
+// <CustomerLogos/>
 // </section>
 
 // </div>

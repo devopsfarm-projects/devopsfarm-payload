@@ -1,33 +1,8 @@
 "use client";
-import React from "react";
-import Herosection from "../components/Herosection";
+import React, { useEffect, useState } from "react";
 import CustomerLogos from "../components/CustomerLogos";
-import { internships, helpSections, expectations } from "../components/homePageData";
 export default function Home() {
 
-  const InternshipCard = ({ internship }: { internship: { title: string, description: string, skills: string, tools: string, projects: string } }) => (
-    <div className="relative overflow-hidden rounded-lg border bg-black hover:shadow hover:shadow-teal-200 p-4">
-      <div className="flex flex-col rounded-md p-4">
-        <h3 className="font-bold text-white">{internship.title}</h3>
-        <p className="text-sm text-gray-400 mt-2">{internship.description}</p>
-        <p className="text-xs text-gray-500 mt-2"> <strong>Skills:</strong> {internship.skills}</p>
-        <p className="text-xs text-gray-500 mt-2"> <strong>Tools:</strong> {internship.tools}</p>
-        <p className="text-xs text-gray-500 mt-2"> <strong>Projects:</strong> {internship.projects}</p>
-      </div>
-    </div>
-  );
-
-  const HelpSectionCard = ({ title, description }: { title: string, description: string }) => (
-    <div className="flex flex-col md:flex-row bg-gray-900 items-center py-4 px-4 md:px-10 lg:px-20 text-sm border-t-2 rounded-b shadow-sm border-green-500 hover:bg-gray-800 transition-colors duration-300">
-      <svg xmlns="http://www.w3.org/2000/svg" className="w-16 md:w-20 text-green-500 stroke-current" fill="none" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-      </svg>
-      <div className="ml-3 text-center md:text-left mt-3 md:mt-0">
-        <div className="text-2xl md:text-3xl text-gray-50">{title}</div>
-        <div className="text-lg md:text-xl text-gray-300 mt-1">{description}</div>
-      </div>
-    </div>
-  );
 
   const ExpectationListItem = ({ text } : {text: string}) => (
     <li className="flex items-center">
@@ -44,151 +19,230 @@ export default function Home() {
     </li>
   );
 
+  const [data, setData] = useState();
+  const [data1, setData1] = useState();
+  const [data2, setData2] = useState();
+  const [data3, setData3] = useState();
+  const [data4, setData4] = useState();
+  const [loading, setLoading] = useState(true);
+  const [error, ] = useState();
+
+  
+  useEffect(() => {
+    fetch("http://localhost:3000/api/pages/67c6dab0cf35e909d739948f?depth=1&draft=false&locale=undefined")
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .catch((err) => console.error("Error fetching data:", err));
+
+      fetch('/api/pages/67c6dab0cf35e909d7399483?depth=1&draft=false&locale=undefined')
+      .then((res) => res.json())
+      .then((data1) => setData1(data1))
+      .catch((err) => console.error("Error fetching data:", err));
+
+      fetch("/api/pages/67c00626df62ff13ba6f1734?depth=1&draft=false&locale=undefined")
+      .then((res) => res.json())
+      .then((result) => {
+        setData2(result);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      });
+
+      fetch("/api/pages/67c974a912cad3bd2aa6466c?depth=1&draft=false&locale=undefined")
+      .then((response) => response.json())
+      .then((data3) => {
+        setData3(data3);
+        setLoading(false);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+
+      fetch("/api/pages/67c98d5a12cad3bd2aa64e2e?depth=1&draft=false&locale=undefined")
+      .then((res) => res.json())
+      .then((result) => {
+        setData4(result);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      });
+
+
+  }, []);
+
+  if (!data || !data1 || loading ) return <div className="flex justify-center items-center h-screen">Loading...</div>;
+  if (!data3) return <div className="text-center text-lg text-red-500">Failed to load data</div>;
+  if (error) return <p className="text-center text-red-500">Error: {error}</p>;
+  const { hero } = data;
+  const contentBlocks = data1.layout[0]?.columns || [];
+
 
   return (
     <>
-    <Herosection/>
-    <main className="pt-16 bg-clip-bg bg-transparent bg-logo-gradient">
-      <section className="container mx-auto px-4 py-12 md:py-24">
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="w-full md:w-1/2 mb-8 md:mb-0">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">
-              Unlock Agility and <br /> Accelerate Innovation with DevOps
-            </h1>
-            <p className="text-xl text-gray-400 mb-6">
-              We bridge the gap between development and operations, crafting and implementing streamlined DevOps pipelines that mitigate delivery bottlenecks. Unlock agility, accelerate innovation, and effectively engage your users with software that moves at the speed of your business.
-            </p>
-            <a
-              href="https://wa.link/manbm0"
-              target="_blank"
-              className="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300"
-            >
-              Get in touch
-            </a>
-          </div>
-          <div className="w-full md:w-1/2">
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-2xl text-gray-800 mb-4">
-                “99% of organizations practicing DevOps report positive impacts, including 61% with higher quality deliverables and 49% with faster time-to-market.”
-              </h3>
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">What You Can Expect</h2>
-              <ul className="space-y-2 text-black mb-6">
-                {expectations.map((text, index) => (
-                  <ExpectationListItem key={index} text={text} />
-                ))}
-              </ul>
-              <div className="space-y-4">
-                <a
-                  target="_blank"
-                  href="https://wa.link/manbm0"
-                  className="block text-center bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300"
-                >
-                  Get Started
-                </a>
-                <a
-                  target="_blank"
-                  href="https://wa.link/manbm0"
-                  className="block text-center border border-blue-600 text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-blue-50 transition duration-300"
-                >
-                  Contact
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+
+
     
-    <div className="flex flex-col gap-3 pb-8 justify-center items-center px-4 sm:px-8 md:px-16 lg:px-40">
-      <h1 className="text-4xl text-green-500 mb-4">HOW DEVOPSFARM CAN HELP</h1>
-      <p className="text-xl md:text-xl text-center text-gray-400 mb-6">
-        We Help Streamline your Development so you can meet the Demands of your Users
-      </p>
-      {helpSections.map((section, index) => (
-        <HelpSectionCard key={index} title={section.title} description={section.description} />
-      ))}
+    {/* <Herosection/> */}
+
+    <div className="min-h-screen bg-black flex flex-col items-center text-center p-6">
+      {hero && (
+        <section className="w-full max-w-4xl bg-black shadow-lg rounded-lg p-6">
+          <h1 className="text-4xl font-bold text-gray-100">
+            {hero.richText.root.children[0].children.map((child: { text: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }, index: React.Key | null | undefined) => (
+              <span key={index} className="block">
+                {child.text}
+              </span>
+            ))}
+          </h1>
+          <p className="mt-4 text-gray-200">{hero.richText.root.children[1].children[0].text}</p>
+          {hero.media?.url && (
+            <img
+              src={`http://localhost:3000${hero.media.url}`}
+              alt="DevOps Hero"
+              className="mt-6 rounded-lg w-full h-auto"
+            />
+          )}
+        </section>
+      )}
+
     </div>
 
+
+    <div className="container mx-auto px-4 py-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {contentBlocks.map((block: { richText: { root: { children: any[]; }; }; enableLink: any; link: { reference: { value: { slug: any; }; }; label: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }; }, index: React.Key | null | undefined) => (
+          <div key={index} className="space-y-4">
+            {block.richText.root.children.map((child: { type: string; tag: string; children: { text: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }[]; }, i: React.Key | null | undefined) => {
+              if (child.type === "heading" && child.tag === "h1") {
+                return <h1 key={i} className="text-4xl font-bold text-gray-200">{child.children[0].text}</h1>;
+              }
+              if (child.type === "heading" && child.tag === "h3") {
+                return <h3 key={i} className="text-xl font-semibold text-gray-200 italic">{child.children[0].text}</h3>;
+              }
+              if (child.type === "heading" && child.tag === "h2") {
+                return <h2 key={i} className="text-2xl font-bold text-gray-300 mt-6">{child.children[0].text}</h2>;
+              }
+              if (child.type === "paragraph") {
+                return <p key={i} className="text-gray-300">{child.children[0].text}</p>;
+              }
+              return null;
+            })}
+
+            {block.enableLink && (
+              <a 
+                href={`/${block.link.reference.value.slug}`} 
+                className="inline-block bg-blue-600 text-white font-medium px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+              >
+                {block.link.label}
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+
+
+    <div className="max-w-4xl mx-auto p-6">
+      {/* Hero Section */}
+      <section className="text-center mb-10">
+        {data2?.layout[0]?.columns[0]?.richText?.root?.children?.map((child, index) => (
+          <h1 key={index} className="text-3xl font-bold mb-4">{child.children[0].text}</h1>
+        ))}
+      </section>
+
+      {/* Layout Sections */}
+      <div className="space-y-8">
+        {data2?.layout[0]?.columns.map((column, index) => (
+          <div key={index} className="bg-gray-100 p-6 rounded-lg shadow-md">
+            {column.richText?.root?.children?.map((child, idx) => (
+              <p key={idx} className="text-lg text-gray-700 mb-2">{child.children[0].text}</p>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    
+    <div className="container mx-auto p-6">
+      {data3.layout.map((block) => {
+        if (block.blockType === "content") {
+          return (
+            <div key={block.id} className="my-6">
+              {block.columns.map((column) => (
+                <div key={column.id} className="mb-4">
+                  {column.richText.root.children.map((item, index) => (
+                    <div key={index}>
+                      {item.type === "heading" && (
+                        <h2 className="text-2xl font-bold mb-2">{item.children[0].text}</h2>
+                      )}
+                      {item.type === "paragraph" && (
+                        <p className="text-gray-700">{item.children[0].text}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          );
+        }
+        if (block.blockType === "mediaBlock") {
+          return (
+            <div key={block.id} className="my-6">
+              <img
+                src={block.media.url}
+                alt="Media"
+                className="w-full h-auto rounded-lg shadow-md"
+              />
+            </div>
+          );
+        }
+        return null;
+      })}
+    </div>
+
+    <div className="max-w-4xl mx-auto p-6">
+      <h2 className="text-2xl font-bold text-center text-gray-100 mb-4">
+        {data4.layout[0].columns[0].richText.root.children[0].children[0].text}
+      </h2>
+      <p className="text-center text-gray-100 mb-6">
+        {data4.layout[0].columns[0].richText.root.children[1].children[0].text}
+      </p>
+      <div className="grid md:grid-cols-3 gap-6">
+        {data4.layout[1].columns.map((column, index) => (
+          column.richText ? (
+            <div key={index} className=" p-4 shadow rounded-lg">
+              <h3 className="text-lg font-semibold text-gray-100">
+                {column.richText.root.children[0].children[0].text}
+              </h3>
+              <p className="text-sm text-gray-600 mt-2">
+                {column.richText.root.children[1].children[0].text}
+              </p>
+              <p className="text-sm font-medium mt-2">
+                <span className="font-bold">Skills:</span> {column.richText.root.children[2].children[1].text}
+              </p>
+              <p className="text-sm font-medium mt-2">
+                <span className="font-bold">Tools:</span> {column.richText.root.children[3].children[1].text}
+              </p>
+              <p className="text-sm font-medium mt-2">
+                <span className="font-bold">Projects:</span> {column.richText.root.children[4].children[1].text}
+              </p>
+            </div>
+          ) : null
+        ))}
+      </div>
+    </div>
 
     <div className="bg-clip-bg  bg-transparent bg-logo-gradient text-white body-font">
     
     <>
     <div className="">
     <section
-id="features"
-className="relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-neutral-900 bg-neutral-900/30"
->
-<section className="w-full mx-auto py-10 text-white">
-<div className="xl:w-[80%] sm:w-[85%] xs:w-[90%] mx-auto flex flex-col md:flex-row gap-4 justify-center items-center mt-4">
-  <div className="lg:w-[50%] w-full">
-    <img
-      className="w-full h-auto lg:rounded-t-lg sm:rounded-sm xs:rounded-sm"
-      src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxM3x8d2Vic2l0ZXxlbnwwfDB8fHwxNzIwMjI4OTA3fDA&ixlib=rb-4.0.3&q=80&w=1080"
-      alt="billboard image"
-    />
-  </div>
-  <div className="lg:w-[50%] w-full text-gray-400 p-4 rounded-md">
-    <h2 className="text-3xl font-semibold text-white">
-      Welcome to DevOpsFarm
-    </h2>
-    <p className="text-md mt-4 ">
-      A leading technology training and consultancy firm specializing in
-      cutting-edge solutions across various industries. Our focus areas
-      include DevOps, AI, MLOps, MERN, and MEAN stack development, along
-      with modern web design practices. At DevOpsFarm, we are committed to
-      equipping individuals and businesses with the skills and knowledge
-      needed to excel in the ever-evolving tech landscape.
-    </p>
-  </div>
-</div>
+      id="features"
+      className="relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-neutral-900 bg-neutral-900/30"
+      >
 
-<div className="xl:w-[80%] sm:w-[85%] xs:w-[90%] mx-auto flex flex-col md:flex-row gap-4 justify-center items-center mt-6">
-  <div className="w-full block md:hidden">
-    <img
-      className="w-full h-auto rounded-md"
-      src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw3fHxNZW50b3J8ZW58MHwwfHx8MTcyMDIyNzU1Nnww&ixlib=rb-4.0.3&q=80&w=1080"
-      alt="billboard image"
-    />
-  </div>
-
-  <div className="lg:w-[50%] w-full text-gray-400 p-4 rounded-md">
-    <h2 className="text-3xl font-semibold text-white">
-      Our internship program is designed to provide hands-on experience,
-    </h2>
-    <p className="text-md mt-4 ">
-      Enabling aspiring professionals to work on real-world projects using
-      the latest technologies. Interns at DevOpsFarm have the opportunity to
-      learn from industry experts, collaborate on innovative solutions, and
-      gain invaluable insights into the dynamic fields of DevOps, AI, MLOps,
-      and full-stack development.
-    </p>
-  </div>
-
-  <div className="w-full hidden md:block lg:w-[50%]">
-    <img
-      className="w-full h-auto rounded-md"
-      src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw3fHxNZW50b3J8ZW58MHwwfHx8MTcyMDIyNzU1Nnww&ixlib=rb-4.0.3&q=80&w=1080"
-      alt="billboard image"
-    />
-  </div>
-</div>
-</section>
-
-
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 space-y-6 py-8 md:py-12 lg:py-20">
-      <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
-        <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-6xl">Available Internship Programs</h2>
-        <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-          Each of these internship programs provides a unique opportunity to gain hands-on experience, work on impactful projects, and develop skills that are highly sought after in the tech industry.
-        </p>
-      </div>
-      <div className="mx-auto grid justify-center  gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
-        {internships.map((internship, index) => (
-          <InternshipCard key={index} internship={internship} />
-        ))}
-      </div>
-    </section>
 
 <div
   className="absolute bottom-0 left-0 z-0 h-1/3 w-full border-b"
