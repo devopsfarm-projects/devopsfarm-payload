@@ -65,7 +65,7 @@ const MyClientComponent = () => {
     </>
   );
 
-  console.log("----------------------------",componentsData[2])
+  console.log("----------------------------",componentsData[1])
 
   return (
     <>
@@ -180,7 +180,7 @@ const MyClientComponent = () => {
   <p>No hero sections found.</p>
 )} */}
 
-<div className="flex flex-col gap-3 pb-8 justify-center items-center px-4 sm:px-8 md:px-16 lg:px-40">
+{/* <div className="flex flex-col gap-3 pb-8 justify-center items-center px-4 sm:px-8 md:px-16 lg:px-40">
         <h1 className="text-4xl text-green-500 mb-4">
           {componentsData[2]?.docs?.map((page) => {
             const firstBlock = page.layout?.find((block) => block.blockType === "content");
@@ -189,9 +189,84 @@ const MyClientComponent = () => {
             return <span key={page.id}>{firstLine}</span>; 
           })}
         </h1>
-      </div>
+      </div> */}
+
+{/* 
+{componentsData[3]?.docs?.length > 0 ? (
+        componentsData[3].docs.map((page) => (
+          <div key={page.id}>
+            {page.layout?.map((block, blockIndex) =>
+              block.blockType === "mediaBlock" && block.media ? (
+                <img
+                  key={blockIndex}
+                  src={`http://localhost:3000${block.media.url}`}
+                  alt="DevOps Hero"
+                  className="mt-6 rounded-lg w-full h-auto"
+                />
+              ) : null
+            )}
+          </div>
+        ))
+      ) : (
+        <p>No pages found.</p>
+      )} 
 
      
+{componentsData[3]?.docs?.length > 0 ? (
+  componentsData[3].docs.map((page) => {
+    const firstMediaBlock = page.layout?.find((block) => block.blockType === "mediaBlock" && block.media);
+
+    return firstMediaBlock ? (
+      <div key={page.id}>
+        <img
+          src={`http://localhost:3000${firstMediaBlock.media.url}`}
+          alt="DevOps Hero"
+          className="mt-6 rounded-lg w-full h-auto"
+        />
+      </div>
+    ) : null;
+  })
+) : (
+  <p>No pages found.</p>
+)} */}
+
+{/* 
+{componentsData[3]?.docs?.length > 0 ? (
+  componentsData[3].docs.map((page) => {
+    const secondMediaBlock = page.layout?.[2]; // Get the second mediaBlock
+
+    return secondMediaBlock && secondMediaBlock.blockType === "mediaBlock" && secondMediaBlock.media ? (
+      <div key={page.id}>
+        <img
+          src={`http://localhost:3000${secondMediaBlock.media.url}`}
+          alt="DevOps Hero"
+          className="mt-6 rounded-lg w-full h-auto"
+        />
+      </div>
+    ) : null;
+  })
+) : (
+  <p>No pages found.</p>
+)} */}
+
+
+
+<div className="flex flex-col gap-3 pb-8 justify-center items-center px-4 sm:px-8 md:px-16 lg:px-40">
+  <h1 className="text-4xl text-green-500 mb-4">
+  {componentsData[4]?.docs?.map((page) => {
+      const contentBlock = page.layout?.[1]; 
+      if (!contentBlock || contentBlock.blockType !== "content") return null;
+
+      const firstColumn = contentBlock.columns?.[0]; 
+      const firstLine = firstColumn?.richText?.root?.children?.[3]?.children?.[1]?.text || ""; 
+      
+      return <span key={page.id}>{firstLine}</span>;
+    })}
+  </h1>
+</div>
+
+
+
 
 
 
