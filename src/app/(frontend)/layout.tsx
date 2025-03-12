@@ -40,7 +40,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           {/* <Navbar /> */}
           {children}
           <Footer1 />
-          <Footer />
+          {/* <Footer /> */}
         </Providers>
       </body>
     </html>

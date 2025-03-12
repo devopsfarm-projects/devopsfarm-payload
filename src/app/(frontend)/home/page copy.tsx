@@ -5,8 +5,8 @@ import React, { useEffect, useState } from "react";
 // import { internships, helpSections, expectations } from "../components/homePageData";
 export default function Home() {
 
-  const getContent = (columnIndex, childIndex) => {
-    return componentsData[4]?.docs?.map((page) => {
+  const getContent = (columnIndex: number, childIndex: number) => {
+    return componentsData[4]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
       const contentBlock = page.layout?.[1];
       if (!contentBlock || contentBlock.blockType !== "content") return null;
   
@@ -102,7 +102,7 @@ export default function Home() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
             </svg>
-            {componentsData[1]?.docs?.map((page) => {
+            {componentsData[1]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
               const contentBlock = page.layout?.[0];
               if (!contentBlock || contentBlock.blockType !== "content") return null;
   
@@ -202,7 +202,7 @@ export default function Home() {
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="w-full md:w-1/2 mb-8 md:mb-0">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">
-            {componentsData[1]?.docs?.map((page) => {
+            {componentsData[1]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[0]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -213,7 +213,7 @@ export default function Home() {
               })}
             </h1>
             <p className="text-xl text-gray-400 mb-6">
-            {componentsData[1]?.docs?.map((page) => {
+            {componentsData[1]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
             const contentBlock = page.layout?.[0]; 
             if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -234,7 +234,7 @@ export default function Home() {
           <div className="w-full md:w-1/2">
             <div className="bg-white rounded-lg shadow-lg p-6">
               <h3 className="text-2xl text-gray-800 mb-4">
-              {componentsData[1]?.docs?.map((page) => {
+              {componentsData[1]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[0]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -244,7 +244,7 @@ export default function Home() {
                 return <span key={page.id}>{firstLine}</span>;
               })}
               </h3>
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">{componentsData[1]?.docs?.map((page) => {
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">{componentsData[1]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
       const contentBlock = page.layout?.[0]; 
       if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -317,7 +317,7 @@ className="relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-
 <div className="xl:w-[80%] sm:w-[85%] xs:w-[90%] mx-auto flex flex-col md:flex-row gap-4 justify-center items-center mt-4">
   <div className="lg:w-[50%] w-full">
   {componentsData[3]?.docs?.length > 0 ? (
-  componentsData[3].docs.map((page) => {
+  componentsData[3].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
     const secondMediaBlock = page.layout?.[1]; // Get the second mediaBlock
 
     return secondMediaBlock && secondMediaBlock.blockType === "mediaBlock" && secondMediaBlock.media ? (
@@ -338,16 +338,16 @@ className="relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-
   </div>
   <div className="lg:w-[50%] w-full text-gray-400 p-4 rounded-md">
     <h2 className="text-3xl font-semibold text-white">
-    {componentsData[3]?.docs?.map((page) => {
-            const firstBlock = page.layout?.find((block) => block.blockType === "content");
+    {componentsData[3]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+            const firstBlock = page.layout?.find((block: { blockType: string; }) => block.blockType === "content");
             const firstColumn = firstBlock?.columns?.[0];
             const firstLine = firstColumn?.richText?.root?.children?.[0]?.children?.[0]?.text || "";
             return <span key={page.id}>{firstLine}</span>; 
           })}
     </h2>
     <p className="text-md mt-4 ">
-    {componentsData[3]?.docs?.map((page) => {
-            const firstBlock = page.layout?.find((block) => block.blockType === "content");
+    {componentsData[3]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+            const firstBlock = page.layout?.find((block: { blockType: string; }) => block.blockType === "content");
             const firstColumn = firstBlock?.columns?.[0];
             const firstLine = firstColumn?.richText?.root?.children?.[1]?.children?.[0]?.text || "";
             return <span key={page.id}>{firstLine}</span>; 
@@ -360,7 +360,7 @@ className="relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-
   <div className="w-full block md:hidden">
    
   {componentsData[3]?.docs?.length > 0 ? (
-  componentsData[3].docs.map((page) => {
+  componentsData[3].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
     const secondMediaBlock = page.layout?.[2]; // Get the second mediaBlock
 
     return secondMediaBlock && secondMediaBlock.blockType === "mediaBlock" && secondMediaBlock.media ? (
@@ -381,7 +381,7 @@ className="relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-
 
   <div className="lg:w-[50%] w-full text-gray-400 p-4 rounded-md">
     <h2 className="text-3xl font-semibold text-white">
-    {componentsData[3]?.docs?.map((page) => {
+    {componentsData[3]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
       const contentBlock = page.layout?.[3]; 
       if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -393,7 +393,7 @@ className="relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-
     
     </h2>
     <p className="text-md mt-4 ">
-    {componentsData[3]?.docs?.map((page) => {
+    {componentsData[3]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
       const contentBlock = page.layout?.[3]; 
       if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -419,7 +419,7 @@ className="relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-
       {/* Hero Section */}
       <section className="container mx-auto px-4 space-y-6 py-8 md:py-12 lg:py-20">
       <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
-        <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-6xl">{componentsData[4]?.docs?.map((page) => {
+        <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-6xl">{componentsData[4]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
       const contentBlock = page.layout?.[0]; 
       if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -429,7 +429,7 @@ className="relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-
       return <span key={page.id}>{firstLine}</span>;
     })}</h2>
         <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-        {componentsData[4]?.docs?.map((page) => {
+        {componentsData[4]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
       const contentBlock = page.layout?.[0]; 
       if (!contentBlock || contentBlock.blockType !== "content") return null;
 

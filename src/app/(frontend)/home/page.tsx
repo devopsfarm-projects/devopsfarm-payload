@@ -189,7 +189,10 @@ export default function Home() {
             </section>
           ))
         ) : (
-          <p>No hero sections found.</p>
+          <div className="relative flex justify-center items-center">
+    <div className="absolute animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-purple-500"></div>
+    <img src="/devopsfarm-logo.png"  className="rounded-full h-28 w-28"/>
+</div>
         )}
   </div>
 </div>
@@ -328,7 +331,10 @@ className="relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-
     ) : null;
   })
 ) : (
-  <p>No pages found.</p>
+  <div className="relative flex justify-center items-center">
+  <div className="absolute animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-purple-500"></div>
+  <img src="/devopsfarm-logo.png"  className="rounded-full h-28 w-28"/>
+</div>
 )}
    
  
@@ -371,7 +377,10 @@ className="relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-
     ) : null;
   })
 ) : (
-  <p>No pages found.</p>
+  <div className="relative flex justify-center items-center">
+    <div className="absolute animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-purple-500"></div>
+    <img src="/devopsfarm-logo.png"  className="rounded-full h-28 w-28"/>
+</div>
 )}
    
   </div>

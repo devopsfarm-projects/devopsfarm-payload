@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 
 const MyClientComponent = () => {
   const [data, setData] = useState<any>(null);
@@ -11,6 +11,7 @@ const MyClientComponent = () => {
     { or: [{ title: { contains: "home page 3rd component" } }] },
     { or: [{ title: { contains: "home page 4th component" } }] },
     { or: [{ title: { contains: "home page 5th component" } }] },
+    { or: [{ title: { contains: "About1" } }] },
   ];
 
   useEffect(() => {
@@ -37,39 +38,11 @@ const MyClientComponent = () => {
     fetchAllData();
   }, []);
 
-  const RenderSection = ({ data }) => (
-    <>
-      {data?.docs?.length > 0 ? (
-        data.docs.map((page: { id: string; layout: any[] }) => (
-          <div key={page.id}>
-            {page.layout?.map((block: { blockType: string; columns: any[] }, blockIndex: number) =>
-              block.blockType === "content"
-                ? block.columns?.map((column: { richText: { root: { children: any[] } } }, colIndex: number) =>
-                    column.richText?.root?.children?.map((child: { children: any[] }, childIndex: number) => (
-                      <div key={`${blockIndex}-${colIndex}-${childIndex}`}>
-                        {child.children?.map((text: { text: string; type: string }, textIndex: number) => (
-                          <span key={textIndex}>
-                            {text.text} {text.type === "linebreak" ? <br /> : " "}
-                          </span>
-                        ))}
-                      </div>
-                    ))
-                  )
-                : null
-            )}
-          </div>
-        ))
-      ) : (
-        <p>No pages found.</p>
-      )}
-    </>
-  );
-
-  console.log("----------------------------",componentsData[1])
+  console.log("----------------------------",componentsData[5])
 
   return (
     <>
-      <div className="min-h-screen bg-black flex flex-col items-center text-center p-6">
+      {/* <div className="min-h-screen bg-black flex flex-col items-center text-center p-6">
         {componentsData[0]?.docs?.length > 0 ? (
           componentsData[0].docs.map((page) => (
             <section key={page.id} className="w-full max-w-4xl bg-black shadow-lg rounded-lg p-6">
@@ -99,7 +72,7 @@ const MyClientComponent = () => {
         ) : (
           <p>No hero sections found.</p>
         )}
-      </div>
+      </div> */}
 
       {/* <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -253,12 +226,12 @@ const MyClientComponent = () => {
 
 <div className="flex flex-col gap-3 pb-8 justify-center items-center px-4 sm:px-8 md:px-16 lg:px-40">
   <h1 className="text-4xl text-green-500 mb-4">
-  {componentsData[4]?.docs?.map((page) => {
-      const contentBlock = page.layout?.[1]; 
+  {componentsData[5]?.docs?.map((page: { layout: any[]; id: Key | null | undefined; }) => {
+      const contentBlock = page.layout?.[0]; 
       if (!contentBlock || contentBlock.blockType !== "content") return null;
 
       const firstColumn = contentBlock.columns?.[0]; 
-      const firstLine = firstColumn?.richText?.root?.children?.[3]?.children?.[1]?.text || ""; 
+      const firstLine = firstColumn?.richText?.root?.children?.[0]?.children?.[0]?.text || ""; 
       
       return <span key={page.id}>{firstLine}</span>;
     })}
