@@ -61,7 +61,7 @@ const MyClientComponent = () => {
           <div key={index} className="w-full md:w-6/12 lg:w-3/12 px-6 mb-6">
             <div className="flex flex-col items-center">
             {componentsData[5]?.docs?.length > 0 &&
-              componentsData[5].docs.map((page) => {
+              componentsData[5].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const mediaBlock = page.layout?.[index];
                 if (
                   mediaBlock &&
