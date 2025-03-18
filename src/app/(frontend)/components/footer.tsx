@@ -63,12 +63,6 @@ export default function Footer() {
                   <FooterLink href="#">DevOps Engineer</FooterLink>
                   <FooterLink href="#">Cloud Engineer</FooterLink>
                 </FooterSection>
-                {/* <FooterSection title="Company">
-                  <FooterLink href="#">DEVOPS FARM, BHASKAR CIRCLE, RATANADA, JODHPUR (RAJ.)</FooterLink>
-                  <FooterLink href="#">query@devopsfarm.in</FooterLink>
-                  <FooterLink href="#">+918769511173</FooterLink>
-                  <FooterLink href="#">+919971566583</FooterLink>
-                </FooterSection> */}
               </div>
             </div>
           </div>

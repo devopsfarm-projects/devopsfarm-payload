@@ -47,7 +47,7 @@ export default function Home() {
     if (!componentsData[2]?.docs?.length) {
       return <p>No hero sections found.</p>;
     }
-  
+    console.log("------=-=-=-=-=-------------==-=",componentsData[0])
     return componentsData[2].docs.map((page: { layout: any[]; id: React.Key }) => {
       const firstBlock = page.layout?.find((block: { blockType: string }) => block.blockType === "content");
   
@@ -156,14 +156,16 @@ export default function Home() {
   return (
     <>
     
-    <div className=" flex flex-col items-center justify-center min-h-screen px-6 text-center relative overflow-hidden">
+    <div className=" flex mt-20 flex-col items-center justify-center min-h-screen px-6 text-center relative overflow-hidden">
 
   <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-700 to-gray-800 animate-pulse opacity-20"></div>
 
 
   <div className="relative z-10">
   {componentsData[0]?.docs?.length > 0 ? (
-          componentsData[0].docs.map((page: { id: React.Key | null | undefined; hero: { richText: { root: { children: { children: { text: string; }[]; }[]; }; }; }; }) => (
+          componentsData[0].docs.map((page: { id: React.Key | null | undefined; hero: {
+            media: any; richText: { root: { children: { children: { text: string; }[]; }[]; }; }; 
+}; }) => (
             <section key={page.id} className="w-full max-w-4xl  p-6">
               <h1 className="text-4xl font-bold text-gray-100">
                 {page.hero?.richText?.root?.children?.[0]?.children?.map(
@@ -183,9 +185,9 @@ export default function Home() {
                   )
                 )}
               </p>
-              {/* {page.hero?.media?.url && (
+              {page.hero?.media?.url && (
                 <img src={page.hero.media.url} alt="Hero Media" className="w-full h-auto" />
-              )} */}
+              )}
             </section>
           ))
         ) : (

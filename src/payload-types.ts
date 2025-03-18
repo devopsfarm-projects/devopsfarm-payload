@@ -71,6 +71,8 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    navbar: Navbar;
+    footer1: Footer1;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -87,6 +89,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    navbar: NavbarSelect<false> | NavbarSelect<true>;
+    footer1: Footer1Select<false> | Footer1Select<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -727,6 +731,72 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navbar".
+ */
+export interface Navbar {
+  id: string;
+  label: string;
+  url?: string | null;
+  order: number;
+  dropdown?:
+    | {
+        category: 'domain_based' | 'role_based';
+        icon?: (string | null) | Media;
+        label: string;
+        details?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer1".
+ */
+export interface Footer1 {
+  id: string;
+  title: string;
+  brand: {
+    name: string;
+    logo?: (string | null) | Media;
+    address?: string | null;
+    email?: string | null;
+    phone?:
+      | {
+          number?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  socials?:
+    | {
+        platform: string;
+        url: string;
+        icon?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  sections?:
+    | {
+        title: string;
+        links?:
+          | {
+              label: string;
+              href: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  copyright: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -916,6 +986,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: string | User;
+      } | null)
+    | ({
+        relationTo: 'navbar';
+        value: string | Navbar;
+      } | null)
+    | ({
+        relationTo: 'footer1';
+        value: string | Footer1;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1273,6 +1351,72 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navbar_select".
+ */
+export interface NavbarSelect<T extends boolean = true> {
+  label?: T;
+  url?: T;
+  order?: T;
+  dropdown?:
+    | T
+    | {
+        category?: T;
+        icon?: T;
+        label?: T;
+        details?: T;
+        url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer1_select".
+ */
+export interface Footer1Select<T extends boolean = true> {
+  title?: T;
+  brand?:
+    | T
+    | {
+        name?: T;
+        logo?: T;
+        address?: T;
+        email?: T;
+        phone?:
+          | T
+          | {
+              number?: T;
+              id?: T;
+            };
+      };
+  socials?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        icon?: T;
+        id?: T;
+      };
+  sections?:
+    | T
+    | {
+        title?: T;
+        links?:
+          | T
+          | {
+              label?: T;
+              href?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  copyright?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

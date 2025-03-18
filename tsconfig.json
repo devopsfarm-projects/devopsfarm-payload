@@ -4,9 +4,10 @@
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     
     "baseUrl": ".",
-    "esModuleInterop": true,
     "target": "ES2022",
     "lib": [
       "DOM",

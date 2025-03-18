@@ -8,18 +8,33 @@ import React from 'react'
 import { AdminBar } from '@/components/AdminBar'
 import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
-import  Footer1  from './components/footer'
+import Footer1 from './footer/Footer'
 import Navbar from './components/Navbar'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
+import { getPayload } from 'payload'
+import config from '@payload-config'
+import NavbarClient from './navabar/Navbar'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
+
+  const payload = await getPayload({ config })
+
+  // Fetch Navbar data
+  const findResult = await payload.find({ collection: 'navbar' })
+
+  // Sort items by 'order' field
+  const sortedNavItems = findResult?.docs?.sort((a, b) => a.order - b.order) || []
+
+  const payload1 = await getPayload({ config });
+
+  const { docs } = await payload1.find({ collection: "footer1" });
 
   return (
     <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
@@ -35,11 +50,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               preview: isEnabled,
             }}
           />
-
-          <Header />
+          <NavbarClient navItems={sortedNavItems} />
+          {/* <Header /> */}
           {/* <Navbar /> */}
           {children}
-          <Footer1 />
+          <Footer1 footerItems={docs} />
           {/* <Footer /> */}
         </Providers>
       </body>
