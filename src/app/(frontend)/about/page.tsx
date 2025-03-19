@@ -10,11 +10,11 @@ const MyClientComponent = () => {
   const [loading, setLoading] = useState(true);
 
   const queries = [
-    { or: [{ title: { contains: "hero" } }] },
-    { or: [{ title: { contains: "home page 2nd component" } }] },
-    { or: [{ title: { contains: "home page 3rd component" } }] },
-    { or: [{ title: { contains: "home page 4th component" } }] },
-    { or: [{ title: { contains: "home page 5th component" } }] },
+    // { or: [{ title: { contains: "hero" } }] },
+    // { or: [{ title: { contains: "home page 2nd component" } }] },
+    // { or: [{ title: { contains: "home page 3rd component" } }] },
+    // { or: [{ title: { contains: "home page 4th component" } }] },
+    // { or: [{ title: { contains: "home page 5th component" } }] },
     { or: [{ title: { contains: "About1" } }] },
   ];
 
@@ -60,8 +60,8 @@ const MyClientComponent = () => {
         {teamIndexes.map((index) => (
           <div key={index} className="w-full md:w-6/12 lg:w-3/12 px-6 mb-6">
             <div className="flex flex-col items-center">
-            {componentsData[5]?.docs?.length > 0 &&
-              componentsData[5].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+            {componentsData[0]?.docs?.length > 0 &&
+              componentsData[0].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const mediaBlock = page.layout?.[index];
                 if (
                   mediaBlock &&
@@ -134,8 +134,8 @@ const MyClientComponent = () => {
               <div className="w-full lg:w-1/2 flex justify-center">
                 <div className="relative h-60 sm:h-80 md:h-96 w-full max-w-lg">
                  
-                {componentsData[5]?.docs?.length > 0 ? (
-                  componentsData[5].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+                {componentsData[0]?.docs?.length > 0 ? (
+                  componentsData[0].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                     const secondMediaBlock = page.layout?.[1]; 
 
                     return secondMediaBlock && secondMediaBlock.blockType === "mediaBlock" && secondMediaBlock.media ? (
@@ -160,7 +160,7 @@ const MyClientComponent = () => {
 
             <div className="w-full lg:w-1/2 p-6 shadow-xl rounded-xl text-center ">
               <h2 className="text-3xl md:text-4xl text-green-400 font-bold mb-4">
-              {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+              {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[0]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -171,7 +171,7 @@ const MyClientComponent = () => {
               })}
                 </h2>
               <p className="text-base sm:text-lg md:text-xl text-gray-300 text-justify">
-              {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+              {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[0]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -193,8 +193,8 @@ const MyClientComponent = () => {
               <div className="w-full lg:w-1/2 flex justify-center">
                 <div className="relative h-60 sm:h-80 md:h-96 w-full max-w-lg">
                  
-                {componentsData[5]?.docs?.length > 0 ? (
-                  componentsData[5].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+                {componentsData[0]?.docs?.length > 0 ? (
+                  componentsData[0].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                     const secondMediaBlock = page.layout?.[3]; 
 
                     return secondMediaBlock && secondMediaBlock.blockType === "mediaBlock" && secondMediaBlock.media ? (
@@ -219,7 +219,7 @@ const MyClientComponent = () => {
 
             <div className="w-full lg:w-1/2 p-6 shadow-xl rounded-xl text-center ">
               <h2 className="text-3xl md:text-4xl text-green-400 font-bold mb-4">
-              {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+              {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[2]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -230,7 +230,7 @@ const MyClientComponent = () => {
               })}
                 </h2>
               <p className="text-base sm:text-lg md:text-xl text-gray-300 text-justify">
-              {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+              {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[2]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -251,8 +251,8 @@ const MyClientComponent = () => {
               <div className="w-full lg:w-1/2 flex justify-center">
                 <div className="relative h-60 sm:h-80 md:h-96 w-full max-w-lg">
                  
-                {componentsData[5]?.docs?.length > 0 ? (
-                  componentsData[5].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+                {componentsData[0]?.docs?.length > 0 ? (
+                  componentsData[0].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                     const secondMediaBlock = page.layout?.[5]; 
 
                     return secondMediaBlock && secondMediaBlock.blockType === "mediaBlock" && secondMediaBlock.media ? (
@@ -277,7 +277,7 @@ const MyClientComponent = () => {
 
             <div className="w-full lg:w-1/2 p-6 shadow-xl rounded-xl text-center ">
               <h2 className="text-3xl md:text-4xl text-green-400 font-bold mb-4">
-              {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+              {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[4]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -288,7 +288,7 @@ const MyClientComponent = () => {
               })}
                 </h2>
               <p className="text-base sm:text-lg md:text-xl text-gray-300 text-justify">
-              {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+              {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[4]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -310,8 +310,8 @@ const MyClientComponent = () => {
               <div className="w-full lg:w-1/2 flex justify-center">
                 <div className="relative h-60 sm:h-80 md:h-96 w-full max-w-lg">
                  
-                {componentsData[5]?.docs?.length > 0 ? (
-                  componentsData[5].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+                {componentsData[0]?.docs?.length > 0 ? (
+                  componentsData[0].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                     const secondMediaBlock = page.layout?.[7]; 
 
                     return secondMediaBlock && secondMediaBlock.blockType === "mediaBlock" && secondMediaBlock.media ? (
@@ -336,7 +336,7 @@ const MyClientComponent = () => {
 
             <div className="w-full lg:w-1/2 p-6 shadow-xl rounded-xl text-center ">
               <h2 className="text-3xl md:text-4xl text-green-400 font-bold mb-4">
-              {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+              {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[6]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -347,7 +347,7 @@ const MyClientComponent = () => {
               })}
                 </h2>
               <p className="text-base sm:text-lg md:text-xl text-gray-300 text-justify">
-              {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+              {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[6]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -368,8 +368,8 @@ const MyClientComponent = () => {
               <div className="w-full lg:w-1/2 flex justify-center">
                 <div className="relative h-60 sm:h-80 md:h-96 w-full max-w-lg">
                  
-                {componentsData[5]?.docs?.length > 0 ? (
-                  componentsData[5].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+                {componentsData[0]?.docs?.length > 0 ? (
+                  componentsData[0].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                     const secondMediaBlock = page.layout?.[9]; 
 
                     return secondMediaBlock && secondMediaBlock.blockType === "mediaBlock" && secondMediaBlock.media ? (
@@ -394,7 +394,7 @@ const MyClientComponent = () => {
 
             <div className="w-full lg:w-1/2 p-6 shadow-xl rounded-xl text-center ">
               <h2 className="text-3xl md:text-4xl text-green-400 font-bold mb-4">
-              {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+              {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[8]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -405,7 +405,7 @@ const MyClientComponent = () => {
               })}
                 </h2>
               <p className="text-base sm:text-lg md:text-xl text-gray-300 text-justify">
-              {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+              {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[8]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -426,8 +426,8 @@ const MyClientComponent = () => {
               <div className="w-full lg:w-1/2 flex justify-center">
                 <div className="relative h-60 sm:h-80 md:h-96 w-full max-w-lg">
                  
-                {componentsData[5]?.docs?.length > 0 ? (
-                  componentsData[5].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+                {componentsData[0]?.docs?.length > 0 ? (
+                  componentsData[0].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                     const secondMediaBlock = page.layout?.[11]; 
 
                     return secondMediaBlock && secondMediaBlock.blockType === "mediaBlock" && secondMediaBlock.media ? (
@@ -452,7 +452,7 @@ const MyClientComponent = () => {
 
             <div className="w-full lg:w-1/2 p-6 shadow-xl rounded-xl text-center ">
               <h2 className="text-3xl md:text-4xl text-green-400 font-bold mb-4">
-              {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+              {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[10]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -463,7 +463,7 @@ const MyClientComponent = () => {
               })}
                 </h2>
               <p className="text-base sm:text-lg md:text-xl text-gray-300 text-justify">
-              {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+              {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[10]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -485,8 +485,8 @@ const MyClientComponent = () => {
               <div className="w-full lg:w-1/2 flex justify-center">
                 <div className="relative h-60 sm:h-80 md:h-96 w-full max-w-lg">
                  
-                {componentsData[5]?.docs?.length > 0 ? (
-                  componentsData[5].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+                {componentsData[0]?.docs?.length > 0 ? (
+                  componentsData[0].docs.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                     const secondMediaBlock = page.layout?.[13]; 
 
                     return secondMediaBlock && secondMediaBlock.blockType === "mediaBlock" && secondMediaBlock.media ? (
@@ -511,7 +511,7 @@ const MyClientComponent = () => {
 
             <div className="w-full lg:w-1/2 p-6 shadow-xl rounded-xl text-center ">
               <h2 className="text-3xl md:text-4xl text-green-400 font-bold mb-4">
-              {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+              {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[12]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -522,7 +522,7 @@ const MyClientComponent = () => {
               })}
                 </h2>
               <p className="text-base sm:text-lg md:text-xl text-gray-300 text-justify">
-              {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+              {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[12]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -541,7 +541,7 @@ const MyClientComponent = () => {
     <div className="relative bg-black text-white py-20">
         <div className="container mx-auto px-6 text-center">
           <h1 className="text-4xl font-bold mb-6">
-          {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+          {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[14]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 
@@ -552,7 +552,7 @@ const MyClientComponent = () => {
               })}
           </h1>
           <p className="text-lg font-light mb-12">
-          {componentsData[5]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
+          {componentsData[0]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
                 const contentBlock = page.layout?.[14]; 
                 if (!contentBlock || contentBlock.blockType !== "content") return null;
 

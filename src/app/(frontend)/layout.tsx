@@ -51,11 +51,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           />
           <NavbarClient navItems={sortedNavItems} />
-          {/* <Header /> */}
-          {/* <Navbar /> */}
           {children}
           <Footer1 footerItems={docs} />
-          {/* <Footer /> */}
         </Providers>
       </body>
     </html>

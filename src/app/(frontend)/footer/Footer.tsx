@@ -4,7 +4,6 @@ import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 export default function Navbar({ footerItems }: { footerItems: any[] }) {
-  console.log("-----------------------------",footerItems)
   return (
     <>
       {footerItems.map((item) => (

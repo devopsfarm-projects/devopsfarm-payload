@@ -3,6 +3,57 @@ import React, { useEffect, useState } from "react";
 export default function Home() {
   
 
+  const [data, setData] = useState<any>(null);
+  const [componentsData, setComponentsData] = useState<any[]>([]);
+
+  const queries = [
+    { or: [{ title: { contains: "hero" } }] },
+    { or: [{ title: { contains: "home page 2nd component" } }] },
+    { or: [{ title: { contains: "home page 3rd component" } }] },
+    { or: [{ title: { contains: "home page 4th component" } }] },
+    { or: [{ title: { contains: "home page 5th component" } }] },
+  ];
+
+  useEffect(() => {
+    const fetchData = async (query?: any) => {
+      try {
+        const url = `/api/data?query=${encodeURIComponent(JSON.stringify(query))}`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error("Failed to fetch data");
+        return await res.json();
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+      }
+    };
+
+    // const fetchAllData = async () => {
+    //   const results = await Promise.all(queries.map((query) => fetchData(query)));
+    //   setComponentsData(results);
+    // };
+    
+
+    const fetchAllData = async () => {
+      const initialData = await fetchData({}); 
+      setData(initialData);
+    
+      const results = await Promise.all(queries.map((query) => fetchData(query)));
+      setComponentsData(results);
+    };
+    
+
+    // const fetchAllData = async () => {
+    //   const initialData = await fetchData();
+    //   setData(initialData);
+
+    //   const results = await Promise.all(queries.map(fetchData));
+    //   setComponentsData(results);
+    // };
+
+    fetchAllData();
+  }, []);
+
+
   const getContent = (columnIndex: number, childIndex: number) => {
     return componentsData[4]?.docs?.map((page: { layout: any[]; id: React.Key | null | undefined; }) => {
       const contentBlock = page.layout?.[1];
@@ -47,7 +98,6 @@ export default function Home() {
     if (!componentsData[2]?.docs?.length) {
       return <p>No hero sections found.</p>;
     }
-    console.log("------=-=-=-=-=-------------==-=",componentsData[0])
     return componentsData[2].docs.map((page: { layout: any[]; id: React.Key }) => {
       const firstBlock = page.layout?.find((block: { blockType: string }) => block.blockType === "content");
   
@@ -116,40 +166,6 @@ export default function Home() {
   
 
 
-  const [data, setData] = useState<any>(null);
-  const [componentsData, setComponentsData] = useState<any[]>([]);
-
-  const queries = [
-    { or: [{ title: { contains: "hero" } }] },
-    { or: [{ title: { contains: "home page 2nd component" } }] },
-    { or: [{ title: { contains: "home page 3rd component" } }] },
-    { or: [{ title: { contains: "home page 4th component" } }] },
-    { or: [{ title: { contains: "home page 5th component" } }] },
-  ];
-
-  useEffect(() => {
-    const fetchData = async (query?: any) => {
-      try {
-        const url = `/api/data?query=${encodeURIComponent(JSON.stringify(query))}`;
-        const res = await fetch(url);
-        if (!res.ok) throw new Error("Failed to fetch data");
-        return await res.json();
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        return null;
-      }
-    };
-
-    const fetchAllData = async () => {
-      const initialData = await fetchData();
-      setData(initialData);
-
-      const results = await Promise.all(queries.map(fetchData));
-      setComponentsData(results);
-    };
-
-    fetchAllData();
-  }, []);
 
 
 
