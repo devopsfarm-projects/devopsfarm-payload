@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Image from "next/image"
 export default function Home() {
   
 
@@ -171,11 +172,68 @@ export default function Home() {
 
   return (
     <>
-    
-    <div className=" flex mt-20 flex-col items-center justify-center min-h-screen px-6 text-center relative overflow-hidden">
 
-  <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-700 to-gray-800 animate-pulse opacity-20"></div>
+<div className="flex mt-20 flex-col items-center justify-center min-h-screen px-6 text-center relative overflow-hidden bg-cover bg-center" 
+  style={{ backgroundImage: `url('/devopsfarm-logo.png')` }}>
 
+  <div className="relative z-10">
+    {componentsData[0]?.docs?.length > 0 ? (
+      componentsData[0].docs.map((page: { id: React.Key | null | undefined; hero: {
+        media: { url: string } | null; richText: { root: { children: { children: { text: string; }[]; }[]; }; }; 
+      }; }) => (
+        <section key={page.id} className="w-full max-w-4xl p-6 bg-black bg-opacity-50 rounded-lg">
+          <h1 className="text-4xl font-bold text-gray-100">
+            {page.hero?.richText?.root?.children?.[0]?.children?.map(
+              (child: { text: string }, index: number) => (
+                <span key={index} className="block">
+                  {child.text}
+                </span>
+              )
+            )}
+          </h1>
+          <p className="text-gray-300">
+            {page.hero?.richText?.root?.children?.[1]?.children?.map(
+              (child: { text: string }, index: number) => (
+                <span key={index} className="block">
+                  {child.text}
+                </span>
+              )
+            )}
+          </p>
+          {/* {page.hero?.media?.url && (
+            <div className="w-full h-auto relative mt-4">
+              <Image
+                src={page.hero.media.url}
+                alt="Hero Media"
+                layout="responsive"
+                width={800}
+                height={400}
+                className="rounded-lg"
+              />
+            </div>
+          )} */}
+        </section>
+      ))
+    ) : (
+      <div className="relative flex justify-center items-center">
+        <div className="absolute animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-purple-500"></div>
+        <div className="relative w-28 h-28">
+          <Image
+            src="/devopsfarm-logo.png"
+            alt="DevOpsFarm Logo"
+            layout="fill"
+            objectFit="cover"
+            className="rounded-full"
+          />
+        </div>
+      </div>
+    )}
+  </div>
+</div>
+
+
+
+    {/* <div className=" flex mt-20 flex-col items-center justify-center min-h-screen px-6 text-center relative overflow-hidden">
 
   <div className="relative z-10">
   {componentsData[0]?.docs?.length > 0 ? (
@@ -213,7 +271,7 @@ export default function Home() {
 </div>
         )}
   </div>
-</div>
+</div> */}
 
 <main className="pt-16 bg-clip-bg bg-transparent bg-logo-gradient">
       <section className="container mx-auto px-4 py-12 md:py-24">
