@@ -30,7 +30,7 @@ const fetchPosts = async () => {
     }));
   } catch (error) {
     console.error("Error fetching posts:", error);
-    return []; // Return empty array if fetching fails
+    return []; 
   }
 };
 

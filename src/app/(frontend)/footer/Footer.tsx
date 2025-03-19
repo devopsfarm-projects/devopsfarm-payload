@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
-
+import Link from "next/link";
 export default function Navbar({ footerItems }: { footerItems: any[] }) {
   return (
     <>
@@ -12,10 +12,10 @@ export default function Navbar({ footerItems }: { footerItems: any[] }) {
             <div className="grid xl:grid-cols-3 gap-8">
               {/* Brand & Socials */}
               <div className="space-y-4">
-                <a href="/" className="flex items-center space-x-2 text-2xl font-medium text-white">
+                <Link href="/" className="flex items-center space-x-2 text-2xl font-medium text-white">
                   <Image src="/devopsfarm-logo.png" alt="DevOpsFarm Logo" width={64} height={64} className="w-16" />
                   <span>{item.title}</span>
-                </a>
+                </Link>
                 <p className="text-gray-400 max-w-md text-sm">
                   {item.brand.address}
                   <br />
@@ -25,7 +25,8 @@ export default function Navbar({ footerItems }: { footerItems: any[] }) {
                 </p>
                 <div className="flex space-x-3">
                   {item.socials.map((social: { url: string | undefined; icon: { url: string | StaticImport; alt: any; }; }, index: React.Key | null | undefined) => (
-                    <a key={index} href={social.url} target="_blank" rel="noopener noreferrer">
+                    // <Link key={index} href={social.url} target="_blank" rel="noopener noreferrer">
+                    <Link key={index} href={social.url ?? "#"} target="_blank" rel="noopener noreferrer">
                       <Image
                         width={40}
                         height={40}
@@ -33,7 +34,7 @@ export default function Navbar({ footerItems }: { footerItems: any[] }) {
                         alt={social.icon.alt || "Social Icon"}
                         className="w-8 transition-all duration-300 hover:brightness-125 hover:drop-shadow-lg"
                       />
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -68,8 +69,8 @@ const FooterSection = ({ title, links }: { title: string; links: any[] }) => (
 
 const FooterLink = ({ href, label }: { href: string; label: string }) => (
   <li>
-    <a href={href} className="text-gray-300 hover:text-gray-50 text-md leading-6">
+    <Link href={href} className="text-gray-300 hover:text-gray-50 text-md leading-6">
       {label}
-    </a>
+    </Link>
   </li>
 );

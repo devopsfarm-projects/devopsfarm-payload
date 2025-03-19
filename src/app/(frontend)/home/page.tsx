@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 export default function Home() {
   
 
-  const [data, setData] = useState<any>(null);
+  const [, setData] = useState<any>(null);
   const [componentsData, setComponentsData] = useState<any[]>([]);
 
   const queries = [

@@ -5,16 +5,10 @@ import Link from "next/link";
 import React from "react";
 import { useEffect, useState } from "react";
 const MyClientComponent = () => {
-  const [data, setData] = useState<any>(null);
   const [componentsData, setComponentsData] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
 
   const queries = [
-    // { or: [{ title: { contains: "hero" } }] },
-    // { or: [{ title: { contains: "home page 2nd component" } }] },
-    // { or: [{ title: { contains: "home page 3rd component" } }] },
-    // { or: [{ title: { contains: "home page 4th component" } }] },
-    // { or: [{ title: { contains: "home page 5th component" } }] },
     { or: [{ title: { contains: "About1" } }] },
   ];
 
@@ -34,10 +28,19 @@ const MyClientComponent = () => {
     const fetchAllData = async () => {
       setLoading(true);
       const results = await Promise.all(queries.map(fetchData));
-      setComponentsData(results);
+      setComponentsData(results.filter((data) => data !== null));
+      
       setLoading(false);
     };
     fetchAllData();
+
+    // const fetchAllData = async () => {
+    //   setLoading(true);
+    //   const results = await Promise.all(queries.map(fetchData));
+    //   setComponentsData(results);
+    //   setLoading(false);
+    // };
+    // fetchAllData();
   }, []);
 
 

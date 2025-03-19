@@ -2,24 +2,15 @@
 import React, { useState, useEffect } from "react";
 import { IconMail, IconPhone, IconNews } from "@tabler/icons-react";
 import { FaBlog } from "react-icons/fa";
-// import Header from "./Header/Header";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  IconAddressBook,
-  IconBrandGooglePlay,
-  IconHome,
-  IconTerminal2,
-} from "@tabler/icons-react";
-import { Item } from "@radix-ui/react-select";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
-import Course from "../course/page";
 import Sidebar from "./sidebar";
 
 export default function Navbar({ navItems }: { navItems: any[] }) {
   const [time, setTime] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [menuTimeout, setMenuTimeout] = useState<ReturnType<typeof setTimeout> | null>(null);
+  // const [menuTimeout, setMenuTimeout] = useState<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const updateTime = () => {
@@ -81,7 +72,7 @@ export default function Navbar({ navItems }: { navItems: any[] }) {
                     )}
 
                     {/* Label & Details */}
-                    <a
+                    <Link
                       href={dropdownItem.url || "#"}
                       target={dropdownItem.newTab ? "_blank" : "_self"}
                       rel={dropdownItem.newTab ? "noopener noreferrer" : undefined}
@@ -92,7 +83,7 @@ export default function Navbar({ navItems }: { navItems: any[] }) {
                       <span className="text-gray-600 text-sm group-hover:text-gray-400">
                         {dropdownItem.details}
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 ))}
             </ul>
@@ -121,7 +112,7 @@ export default function Navbar({ navItems }: { navItems: any[] }) {
                     )}
 
                     {/* Label & Details */}
-                    <a
+                    <Link
                       href={dropdownItem.url || "#"}
                       target={dropdownItem.newTab ? "_blank" : "_self"}
                       rel={dropdownItem.newTab ? "noopener noreferrer" : undefined}
@@ -132,7 +123,7 @@ export default function Navbar({ navItems }: { navItems: any[] }) {
                       <span className="text-gray-600 text-sm group-hover:text-gray-400">
                         {dropdownItem.details}
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 ))}
             </ul>
@@ -163,7 +154,7 @@ export default function Navbar({ navItems }: { navItems: any[] }) {
               +919971566583
             </h1>
           </div>
-          <a href="/blogs">
+          <Link href="/blogs">
           <div className="navbar-user flex items-center gap-4 text-gray-100">
             <h1 className="flex items-center text-xs">
               <FaBlog className="h-4" /> Blog
@@ -173,7 +164,7 @@ export default function Navbar({ navItems }: { navItems: any[] }) {
               <IconNews className="h-4" /> News & Events
             </h1>
           </div>
-          </a>
+          </Link>
         </div>
 
         <header className="flex justify-between md:pt-10 items-center p-4">
@@ -186,29 +177,47 @@ export default function Navbar({ navItems }: { navItems: any[] }) {
               className="w-10 md:w-20 h-auto"
             />
             <h1 className="md:text-2xl text-lg font-bold bg-clip-text text-white">
-              <a href="/">DevopsFarm</a>
+              <Link href="/">DevopsFarm</Link>
             </h1>
           </div>
-
 
           <ul className="md:flex items-center hidden gap-6">
   {navItems.map((item) => (
     <li
       key={item.id}
       className="relative group transform transition-all duration-200 ease-in-out hover:scale-125 flex flex-col items-center justify-center"
-      onClick={item.label === "Courses" ? () => setMenuOpen(!menuOpen) : undefined} 
+      onClick={item.label === "Courses" ? () => setMenuOpen(!menuOpen) : undefined}
     >
-      <a href={item.url} className="flex flex-col items-center">
-        <p className="text-center text-sm mt-1">{item.label}</p>
-      </a>
+      {item.url ? (
+        <Link href={item.url} className="flex flex-col items-center">
+          <p className="text-center text-sm mt-1">{item.label}</p>
+        </Link>
+      ) : (
+        <p className="text-center text-sm mt-1 cursor-pointer">{item.label}</p> // Render text instead of Link
+      )}
     </li>
   ))}
 </ul>
 
+
+          {/* <ul className="md:flex items-center hidden gap-6">
+  {navItems.map((item) => (
+    <li
+      key={item.id}
+      className="relative group transform transition-all duration-200 ease-in-out hover:scale-125 flex flex-col items-center justify-center"
+      onClick={item.label === "Courses" ? () => setMenuOpen(!menuOpen) : undefined} 
+    >
+      <Link href={item.url} className="flex flex-col items-center">
+        <p className="text-center text-sm mt-1">{item.label}</p>
+      </Link>
+    </li>
+  ))}
+</ul> */}
+
         
           <div className="relative flex items-center space-x-4">
         
-          <a
+          <Link
            href="https://wa.link/manbm0"
            target='_blank'
           > <Image
@@ -217,7 +226,7 @@ export default function Navbar({ navItems }: { navItems: any[] }) {
               src="/whatsapp.png"
               alt="Profile"
               className="w-10 h-10"
-            /></a>
+            /></Link>
            
             <div className="inline-flex md:hidden ">
               <Sidebar navItems={navItems} />
