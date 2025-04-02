@@ -54,6 +54,7 @@ export type SupportedTimezones =
   | 'Asia/Singapore'
   | 'Asia/Tokyo'
   | 'Asia/Seoul'
+  | 'Australia/Brisbane'
   | 'Australia/Sydney'
   | 'Pacific/Guam'
   | 'Pacific/Noumea'
@@ -73,6 +74,8 @@ export interface Config {
     users: User;
     navbar: Navbar;
     footer1: Footer1;
+    quizzes: Quiz;
+    quizResponses: QuizResponse;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -91,6 +94,8 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     navbar: NavbarSelect<false> | NavbarSelect<true>;
     footer1: Footer1Select<false> | Footer1Select<true>;
+    quizzes: QuizzesSelect<false> | QuizzesSelect<true>;
+    quizResponses: QuizResponsesSelect<false> | QuizResponsesSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -376,7 +381,8 @@ export interface Category {
  */
 export interface User {
   id: string;
-  name?: string | null;
+  name: string;
+  role: 'user' | 'admin';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -628,6 +634,7 @@ export interface Form {
             label?: string | null;
             width?: number | null;
             defaultValue?: string | null;
+            placeholder?: string | null;
             options?:
               | {
                   label: string;
@@ -792,6 +799,50 @@ export interface Footer1 {
       }[]
     | null;
   copyright: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quizzes".
+ */
+export interface Quiz {
+  id: string;
+  title: string;
+  questions?:
+    | {
+        question: string;
+        options?:
+          | {
+              option: string;
+              id?: string | null;
+            }[]
+          | null;
+        correctAnswer: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quizResponses".
+ */
+export interface QuizResponse {
+  id: string;
+  email: string;
+  quizId: string;
+  answers:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  submittedAt: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -994,6 +1045,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'footer1';
         value: string | Footer1;
+      } | null)
+    | ({
+        relationTo: 'quizzes';
+        value: string | Quiz;
+      } | null)
+    | ({
+        relationTo: 'quizResponses';
+        value: string | QuizResponse;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1342,6 +1401,7 @@ export interface CategoriesSelect<T extends boolean = true> {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -1415,6 +1475,40 @@ export interface Footer1Select<T extends boolean = true> {
         id?: T;
       };
   copyright?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quizzes_select".
+ */
+export interface QuizzesSelect<T extends boolean = true> {
+  title?: T;
+  questions?:
+    | T
+    | {
+        question?: T;
+        options?:
+          | T
+          | {
+              option?: T;
+              id?: T;
+            };
+        correctAnswer?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quizResponses_select".
+ */
+export interface QuizResponsesSelect<T extends boolean = true> {
+  email?: T;
+  quizId?: T;
+  answers?: T;
+  submittedAt?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1499,6 +1593,7 @@ export interface FormsSelect<T extends boolean = true> {
               label?: T;
               width?: T;
               defaultValue?: T;
+              placeholder?: T;
               options?:
                 | T
                 | {
